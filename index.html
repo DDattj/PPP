@@ -1,3 +1,88 @@
-<h1>연습용</h1>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>내 연습 페이지</title>
+    <style>
+        /* 스타일(디자인) 구역 */
+        body { margin: 0; overflow: hidden; } /* 여백 제거, 스크롤 방지 */
+        
+        /* 1. 오프닝 화면 디자인 */
+        #opening {
+            position: fixed; /* 화면에 딱 고정 */
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-color: black; /* 검은 배경 */
+            color: white;
+            display: flex; 
+            justify-content: center; 
+            align-items: center; /* 글자 가운데 정렬 */
+            z-index: 999; /* 제일 위에 띄우기 */
+            cursor: pointer;
+        }
 
-<p style="color: blue;">이것역시연습용</p>
+        /* 2. 메인 화면 디자인 */
+        #main-content {
+            width: 100%; height: 100vh;
+            background-color: lightyellow; /* 배경색 */
+            text-align: center;
+            padding-top: 100px;
+            display: none; /* 처음엔 숨겨둠 */
+        }
+
+        /* 3. 팝업창 디자인 */
+        #popup {
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%); /* 정중앙 배치 */
+            background: white;
+            border: 2px solid blue;
+            padding: 20px;
+            display: none; /* 처음엔 숨겨둠 */
+        }
+    </style>
+</head>
+<body>
+
+    <audio id="bgm" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <div id="opening" onclick="startGame()">
+        <h1>화면을 클릭하면 시작합니다 (Click Me)</h1>
+    </div>
+
+    <div id="main-content">
+        <h1>안녕하세요! 제 방입니다.</h1>
+        <p>아래 버튼을 눌러보세요.</p>
+        <button onclick="showPopup()">비밀 메시지 보기</button>
+    </div>
+
+    <div id="popup">
+        <p>짠! 숨겨진 메시지입니다.</p>
+        <input type="text" placeholder="방명록을 남기세요">
+        <br><br>
+        <button onclick="closePopup()">닫기</button>
+    </div>
+
+    <script>
+        function startGame() {
+            // 오프닝을 숨기고 메인을 보여준다
+            document.getElementById('opening').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+            
+            // (음악 파일이 있다면 여기서 재생됩니다)
+            // document.getElementById('bgm').play(); 
+        }
+
+        function showPopup() {
+            document.getElementById('popup').style.display = 'block';
+        }
+
+        function closePopup() {
+            document.getElementById('popup').style.display = 'none';
+        }
+    </script>
+
+</body>
+</html>
